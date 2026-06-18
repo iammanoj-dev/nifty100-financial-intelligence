@@ -14,9 +14,22 @@ logs/
 
 data/processed/
 
-data/exports/
+data/exports/*
+!data/exports/validation_failures.csv
 
 reports/
 
 database/*.db
 
+# macOS
+.DS_Store
+
+# Raw datasets
+data/raw/
+
+# Notebook exploration
+notebooks/
+
+# Python cache
+__pycache__/
+*.pyc

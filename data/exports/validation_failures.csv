@@ -1,0 +1,6 @@
+rule_id,severity,table_name,column_name,message,row_count
+DQ-06,CRITICAL,profitandloss,"company_id,year",Duplicate Company-Year,26
+DQ-10,WARNING,profitandloss,net_profit,Negative Net Profit,78
+DQ-11,WARNING,profitandloss,opm_percentage,OPM Greater Than 100,164
+DQ-12,WARNING,profitandloss,opm_percentage,OPM Less Than -100,67
+DQ-15,WARNING,cashflow,net_cash_flow,Missing Cash Flow,2
