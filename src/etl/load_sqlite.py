@@ -58,6 +58,8 @@ def main():
         ("data/raw/sectors.xlsx", "sectors", 0),
         ("data/raw/peer_groups.xlsx", "peer_groups", 0),
         ("data/raw/stock_prices.xlsx", "stock_prices", 0),
+        ("data/raw/financial_ratios.xlsx", "financial_ratios", 0),
+        ("data/raw/market_cap.xlsx", "market_cap", 0),
     ]
 
     for excel_file, table_name, header_row in datasets:

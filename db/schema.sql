@@ -1,7 +1,7 @@
 PRAGMA foreign_keys = ON;
 
 CREATE TABLE companies (
-    id INTEGER PRIMARY KEY,
+    id TEXT PRIMARY KEY,
     company_logo TEXT,
     company_name TEXT,
     chart_link TEXT,
@@ -32,7 +32,7 @@ CREATE TABLE profitandloss (
     eps REAL,
     dividend_payout REAL,
     FOREIGN KEY(company_id)
-        REFERENCES companies(company_name)
+        REFERENCES companies(id)
 );
 
 CREATE TABLE balancesheet (
@@ -50,7 +50,7 @@ CREATE TABLE balancesheet (
     other_asset REAL,
     total_assets REAL,
     FOREIGN KEY(company_id)
-        REFERENCES companies(company_name)
+        REFERENCES companies(id)
 );
 
 CREATE TABLE cashflow (
@@ -62,7 +62,7 @@ CREATE TABLE cashflow (
     financing_activity REAL,
     net_cash_flow REAL,
     FOREIGN KEY(company_id)
-        REFERENCES companies(company_name)
+        REFERENCES companies(id)
 );
 
 CREATE TABLE analysis (
@@ -73,7 +73,7 @@ CREATE TABLE analysis (
     stock_price_cagr REAL,
     roe REAL,
     FOREIGN KEY(company_id)
-        REFERENCES companies(company_name)
+        REFERENCES companies(id)
 );
 
 CREATE TABLE documents (
@@ -82,7 +82,7 @@ CREATE TABLE documents (
     year TEXT,
     annual_report TEXT,
     FOREIGN KEY(company_id)
-        REFERENCES companies(company_name)
+        REFERENCES companies(id)
 );
 
 CREATE TABLE prosandcons (
@@ -91,7 +91,7 @@ CREATE TABLE prosandcons (
     pros TEXT,
     cons TEXT,
     FOREIGN KEY(company_id)
-        REFERENCES companies(company_name)
+        REFERENCES companies(id)
 );
 
 CREATE TABLE sectors (
@@ -102,7 +102,7 @@ CREATE TABLE sectors (
     index_weight_pct REAL,
     market_cap_category TEXT,
     FOREIGN KEY(company_id)
-        REFERENCES companies(company_name)
+        REFERENCES companies(id)
 );
 
 CREATE TABLE peer_groups (
@@ -111,7 +111,7 @@ CREATE TABLE peer_groups (
     company_id TEXT,
     is_benchmark BOOLEAN,
     FOREIGN KEY(company_id)
-        REFERENCES companies(company_name)
+        REFERENCES companies(id)
 );
 
 CREATE TABLE stock_prices (
@@ -125,5 +125,36 @@ CREATE TABLE stock_prices (
     volume INTEGER,
     adjusted_close REAL,
     FOREIGN KEY(company_id)
-        REFERENCES companies(company_name)
+        REFERENCES companies(id)
+);
+
+CREATE TABLE market_cap (
+    id INTEGER PRIMARY KEY,
+    company_id TEXT,
+    year INTEGER,
+    market_cap_crore REAL,
+    enterprise_value_crore REAL,
+    pe_ratio REAL,
+    pb_ratio REAL,
+    ev_ebitda REAL,
+    dividend_yield_pct REAL
+);
+
+CREATE TABLE financial_ratios (
+    id INTEGER PRIMARY KEY,
+    company_id TEXT,
+    year TEXT,
+    net_profit_margin_pct REAL,
+    operating_profit_margin_pct REAL,
+    return_on_equity_pct REAL,
+    debt_to_equity REAL,
+    interest_coverage REAL,
+    asset_turnover REAL,
+    free_cash_flow_cr REAL,
+    capex_cr REAL,
+    earnings_per_share REAL,
+    book_value_per_share REAL,
+    dividend_payout_ratio_pct REAL,
+    total_debt_cr REAL,
+    cash_from_operations_cr REAL
 );
