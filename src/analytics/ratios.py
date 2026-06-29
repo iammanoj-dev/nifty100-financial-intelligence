@@ -135,3 +135,134 @@ def return_on_assets(
         return None
 
     return (net_profit / total_assets) * 100
+
+def debt_to_equity(
+    borrowings,
+    equity_capital,
+    reserves,
+):
+    """
+    Debt-to-Equity Ratio
+
+    Formula:
+    Borrowings / (Equity Capital + Reserves)
+
+    Returns:
+        0 if borrowings = 0
+        None if equity <= 0
+    """
+
+    if borrowings == 0:
+        return 0
+
+    equity = equity_capital + reserves
+
+    if equity <= 0:
+        return None
+
+    return borrowings / equity
+ 
+def high_leverage_flag(
+    debt_to_equity_ratio,
+    broad_sector,
+):
+    """
+    High leverage flag.
+
+    True when:
+    D/E > 5
+    AND company is not in Financials sector.
+    """
+
+    if (
+        debt_to_equity_ratio is not None
+        and debt_to_equity_ratio > 5
+        and broad_sector != "Financials"
+    ):
+        return True
+
+    return False
+
+def interest_coverage_ratio(
+    operating_profit,
+    other_income,
+    interest,
+):
+    """
+    Interest Coverage Ratio
+
+    Formula:
+    (Operating Profit + Other Income) / Interest
+
+    Returns:
+        None if interest = 0
+    """
+
+    if interest == 0:
+        return None
+
+    return (
+        operating_profit
+        + other_income
+    ) / interest
+
+
+def interest_coverage_label(
+    interest,
+):
+    """
+    Returns display label for debt-free companies.
+    """
+
+    if interest == 0:
+        return "Debt Free"
+
+    return ""
+
+def interest_coverage_warning(
+    icr,
+):
+    """
+    Flag companies unable to comfortably
+    cover interest payments.
+
+    Warning when ICR < 1.5
+    """
+
+    if icr is None:
+        return False
+
+    return icr < 1.5
+
+def net_debt(
+    borrowings,
+    investments,
+):
+    """
+    Net Debt
+
+    Formula:
+    Borrowings - Investments
+
+    Investments are treated as
+    liquid asset proxy.
+    """
+
+    return borrowings - investments
+def asset_turnover(
+    sales,
+    total_assets,
+):
+    """
+    Asset Turnover Ratio
+
+    Formula:
+    Sales / Total Assets
+
+    Returns None if total_assets = 0.
+    """
+
+    if total_assets == 0:
+        return None
+
+    return sales / total_assets
